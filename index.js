@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get("/", (req, res) => {
+app.get("/api/classify-number", (req, res) => {
     res.send("Welcome to the Number Classification API! Use /api/classify-number?number=YOUR_NUMBER");
 });
 
