@@ -8,6 +8,11 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+
+app.get("/", (req, res) => {
+    res.send("Welcome to the Number Classification API! Use /api/classify-number?number=YOUR_NUMBER");
+});
+
 app.get("/api/classify-number", async (req, res) => {
     const { number } = req.query;
 
