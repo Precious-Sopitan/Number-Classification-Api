@@ -1,0 +1,2 @@
+# Add node modules here to prevent it from being pushed to github
+node_modules/
