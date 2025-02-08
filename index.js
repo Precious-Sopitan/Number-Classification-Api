@@ -3,24 +3,19 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Ensure it works on Render
 
 app.use(cors());
 app.use(express.json());
 
-// Handle requests without a number query (welcome message)
-app.get("/api/classify-number", (req, res) => {
+// Handle number classification
+app.get("/api/classify-number", async (req, res) => {
     if (!req.query.number) {
         return res.send("Welcome to the Number Classification API! Use /api/classify-number?number=YOUR_NUMBER");
     }
-    next(); // Pass control to the next matching route
-});
 
-// Handle number classification
-app.get("/api/classify-number", async (req, res) => {
     const { number } = req.query;
-
-    if (!number || isNaN(number)) {
+    if (isNaN(number)) {
         return res.status(400).json({ number, error: true });
     }
 
@@ -41,7 +36,7 @@ app.get("/api/classify-number", async (req, res) => {
 
     let funFact = "No fun fact available.";
     try {
-        const response = await axios.get(http://numbersapi.com/${num}?json);
+        const response = await axios.get(`http://numbersapi.com/${num}?json`);
         funFact = response.data.text;
     } catch (error) {
         console.error("Error fetching fun fact:", error.message);
