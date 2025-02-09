@@ -38,7 +38,6 @@ app.get("/api/classify-number", async (req, res) => {
     if (isNaN(number)) {
         return res.status(400).json({ number, error: true });
     }
-
     const num = parseInt(number, 10);
     const properties = [];
 
@@ -53,10 +52,11 @@ app.get("/api/classify-number", async (req, res) => {
 
     let funFact = "No fun fact available.";
     try {
-        const response = await axios.get(http://numbersapi.com/${num}?json);
+        const response = await axios.get(`http://numbersapi.com/${num}?json`);
         funFact = response.data.text;
     } catch (error) {
         console.error("Error fetching fun fact:", error.message);
+
     }
 
     res.json({
@@ -70,5 +70,5 @@ app.get("/api/classify-number", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(Server running on port ${PORT});
+    console.log(`Server running on port ${PORT}`);
 });
